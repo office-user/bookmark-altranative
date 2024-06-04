@@ -1,0 +1,19 @@
+name: Floccus Sync
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Floccus Sync
+        uses: marcelklehr/floccus@v1.2.4
+        with:
+          webdav-url: ${{ secrets.GITHUB_REPO_URL }}
+          webdav-username: ${{ secrets.GITHUB_USERNAME }}
+          webdav-password: ${{ secrets.GITHUB_PASSWORD }}
